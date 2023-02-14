@@ -1,0 +1,221 @@
+-=BLACK KNIGHT TRACKER=- [108 effect commands]
+
+  Volume Column effects.
+   Ax Fine volume slide up by x
+   Bx Fine volume slide down by x
+   Cx Volume slide up by x
+   Dx Volume slide down by x
+   Ex Pitch slide down by x
+   Fx Pitch slide up by x
+   Gx Slide to note with speed x
+   Hx Vibrato with depth x
+   Ix Set Sample Cue by x
+   $x Vibrato with speed x
+   <x Panning Left Slide by x
+   >x Panning Right Slide by x
+
+  General effects.
+   Axx Set song speed (hex)
+   Bxx Jump to Order (hex)
+   Cxx Break to row xx (hex) of next pattern
+   D0x Volume slide down by x
+   Dx0 Volume slide up by x
+   DFx Fine volume slide down by x
+   DxF Fine volume slide up by x
+   Exx Pitch slide down by xx
+   EFx Fine pitch slide down by x
+   EEx Extra fine pitch slide down by x
+   Fxx Pitch slide up by xx
+   FFx Fine pitch slide up by x
+   FEx Extra fine pitch slide up by x
+   Gxx Slide to note with speed xx
+   Hxy Vibrato with speed x, depth y
+   Ixy Tremor with ontime x and offtime y
+   Jxy Arpeggio with halftones x and y
+   Kxx Dual Command: H00 & Dxx
+   Lxx Dual Command: G00 & Dxx
+   Mxx Set channel volume to xx (0->40h)
+   N0x Channel volume slide down by x
+   Nx0 Channel volume slide up by x
+   NFx Fine channel volume slide down by x
+   NxF Fine channel volume slide up by x
+   Oxx Set sample offset to yxxzzh, y set with SAy, zz set with *zz
+   P0x Panning slide to right by x
+   Px0 Panning slide to left by x
+   PFx Fine panning slide to right by x
+   PxF Fine panning slide to left by x
+   Qxy Retrigger note every y ticks with volume modifier x
+    Values for x:
+       0: No volume change         8: Not used
+       1: -1                       9: +1
+       2: -2                       A: +2
+       3: -4                       B: +4
+       4: -8                       C: +8
+       5: -16                      D: +16
+       6: *2/3                     E: *3/2
+       7: *1/2                     F: *2
+   Rxy Tremolo with speed x, depth y
+   S0x Set filter
+   S1x Set glissando control
+   S2x Set finetune
+   S3x Set vibrato waveform to type x
+   S4x Set tremolo waveform to type x
+   S5x Set panbrello waveform to type x
+     Waveforms for commands S3x, S4x and S5x:
+       0: Sine wave
+       1: Ramp down
+       2: Square wave
+       3: Random wave
+   S6x Pattern delay for x ticks
+   S70 Past note cut
+   S71 Past note off
+   S72 Past note fade
+   S73 Set NNA to note cut
+   S74 Set NNA to continue
+   S75 Set NNA to note off
+   S76 Set NNA to note fade
+   S77 Turn off volume envelope
+   S78 Turn on volume envelope
+   S79 Turn off panning envelope
+   S7A Turn on panning envelope
+   S7B Turn off pitch envelope
+   S7C Turn on pitch envelope
+   S7D Force Pitch Envelope
+   S7E Force Filter Envelope
+   S8x Set panning position
+   S90 Set surround off
+   S91 Set surround sound
+   S98 -> #00
+   S99 -> #40
+   S9A Set Center Surround sound [ALL]
+   S9B Set Quaq Surround sound [ALL]
+   S9C Set Global Filters
+   S9D Set Local Filters
+   S9E Set Forward Playback
+   S9F Set Backward Playback
+   SAy Set high value of sample offset yxxzzh
+   SB0 Set loopback point
+   SBx Loop x times to loopback point
+   SCx Note cut after x ticks
+   SDx Note delay for x ticks
+   SEx Pattern delay for x rows
+   SFx Set parameterised MIDI Macro
+   T0x Tempo slide down by x
+   T1x Tempo slide up by x
+   Txx Set Tempo to xx (20h->0FFh)
+   Uxy Fine vibrato with speed x, depth y
+   Vxx Set global volume to xx (0->80h)
+   W0x Global volume slide down by x
+   Wx0 Global volume slide up by x
+   WFx Fine global volume slide down by x
+   WxF Fine global volume slide up by x
+   Xxx Set panning position (0->0FFh)
+   Yxy Panbrello with speed x, depth y
+   Zxx MIDI Macros
+   !xx Set Volume
+   @xx Built-in Chorus
+     Parameters for command @xx
+       @xx Set Volume to xx (0->40h)
+       @5x Wet Dry Mix
+       @6x Depth
+       @7x Frequency
+       @8x Wave Shape
+       @9x Phase
+       @Ax Feedback
+       @Bx Delay
+       @xx Predefined Presets (C0->FEh)
+       @FF Set Custom Preset
+   #xx Built-in Reverb
+     Parameters for command #xx
+       #xx Set Volume to xx (0->40h)
+       #5x Input Gain
+       #6x Reverb Mix
+       #7x Reverb Time
+       #8x High Frequency RT Ratio
+       #xx Predefined Presets (C0->FEh)
+       #FF Set Custom Preset
+   $xx Key Off in Ticks
+   &xx Set envelope position
+   *zz Set Low Value of Sample Offset yxxzzh
+   (xy Note Slide Down with ticks x, halftones y
+   )xy Note Slide Up with ticks x, halftones y
+   /xx MIDI Macros (Smooth)
+   :xy Note Delay + Cut
+   +xx Parameter Extension
+   =xx Set Finetune
+   -xx Set Finetune (Smooth)
+
+  Reverb Presets
+   #C0 GM Plate
+   #C1 GM Small Room
+   #C2 GM Medium Room
+   #C3 GM Large Room
+   #C4 GM Medium Hall
+   #C5 GM Large Hall
+   #C6 Generic
+   #C7 Padded Cell
+   #C8 Room
+   #C9 Bathroom
+   #CA Living Room
+   #CB Stone Room
+   #CC Auditorium
+   #CD Concert Hall
+   #CE Cave
+   #CF Arena
+   #D0 Hangar
+   #D1 Carpeted Hallway
+   #D2 Hallway
+   #D3 Stone Corridor
+   #D4 Alley
+   #D5 Forest
+   #D6 City
+   #D7 Mountains
+   #D8 Quarry
+   #D9 Plain
+   #DA Parking Lot
+   #DB Sewer Pipe
+   #DC Underwater
+   #DD Default
+   #DE Hall 1 XG
+   #DF Hall 2 XG
+   #E0 Room 1 XG 
+   #E1 Room 2 XG
+   #E2 Room 3 XG
+   #E3 Stage 1 XG
+   #E4 Stage 2 XG
+   #E5 Plate XG
+   #E6 White Room XG
+   #E7 Tunnel XG
+   #E8 Basement XG
+   #E9 No Effect XG
+   #EA Room 1 GS
+   #EB Room 2 GS
+   #EC Room 3 GS
+   #ED Hall 1 GS
+   #EE Hall 2 GS
+   #EF Plate GS
+   #F0 Delay GS
+   #F1 Pan Delay GS
+
+  Chorus Presets
+   @C0 Default
+   @C1 Chorus 1 XG
+   @C2 Chorus 2 XG
+   @C3 Chorus 3 XG
+   @C4 Chorus 4 XG
+   @C5 Celeste 1 XG
+   @C6 Celeste 2 XG
+   @C7 Celeste 3 XG
+   @C8 Celeste 4 XG
+   @C9 Flanger 1 XG
+   @CA Flanger 2 XG
+   @CB Flanger 3 XG
+   @CC No Effect XG
+   @CD Chorus 1 GS
+   @CE Chorus 2 GS
+   @CF Chorus 3 GS
+   @D0 Chorus 4 GS
+   @D1 FB Chorus GS
+   @D2 Flanger GS
+   @D3 Delay GS
+   @D4 Delay (FB) GS
