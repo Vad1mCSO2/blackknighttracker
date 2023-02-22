@@ -20,7 +20,7 @@
 - Buttons from hot key shortcuts in the help
 - Click and Drag Loop, Sustain Loop and Cues with `Ix` (OpenMPT `o0x`)
 ### Instrument List
-![InstrumentList](Instrument_list.png)
+![InstrumentList](Instrument_List.png)
 - Keyboard can be played in left mouse button, to edit splits right mouse button
 - Advanced controls with waveform view, sample list, all envelopes in single page
 
