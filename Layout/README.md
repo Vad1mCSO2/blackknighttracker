@@ -23,5 +23,14 @@
 ![InstrumentList](Instrument_List.png)
 - Keyboard can be played in left mouse button, to edit splits right mouse button
 - Advanced controls with waveform view, sample list, all envelopes in single page
-
+### Channel Mixer
+![ChannelMixer](Channel_Mixer.png)
+- Added Chorus and Reverb volume
+- This page available all sliders to confortable not pressing F11 twice
+### Order List & Variables
+![Variables](OrderList_Variables.png)
+- MPTM factorial tempo
+- Added fast volume slides [S3M Behaviour] (BKM adds)
+- Order List moved from F11 to F12 and added 2nd row
+- Picture Cover
 
