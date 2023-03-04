@@ -511,6 +511,10 @@
 │ 00002C20:│Cyrillic Font Data Length 800h.│                 │
 │          ├─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┤                 │
 │                                                            │
+│          ├─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┤                 │
+│ 00003820:│Button 2 Font Data Length 800h.│                 │
+│          ├─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┤                 │
+│                                                            │
 ╞* raster font will be used Text-Based GUI                   ╡
 │                                                            │
 ╞How it works this 8x8 and 4x8 raster font                   ╡
