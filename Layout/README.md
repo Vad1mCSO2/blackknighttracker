@@ -27,6 +27,7 @@
 ![ChannelMixer](Channel_Mixer.png)
 - Added Chorus and Reverb volume
 - This page available all sliders to confortable not pressing F11 twice
+- Added 4OP for OPL3 Synthesis
 ### Order List & Variables
 ![Variables](OrderList_Variables.png)
 - MPTM factorial tempo
@@ -34,3 +35,11 @@
 - Order List moved from F11 to F12 and added 2nd row
 - Picture Cover
 
+## Special
+### Russian text in BKT
+![Rustxt](Russian_text.png)
+- Font has been found from DVD bootloader※1. Copyright © TEAM LTD 
+
+```
+※1 Using Impulse Tracker font customizer via REAL HARDWARE. You can load the BIOS font pressing Ctrl-BackSpace and save .ITF
+```
