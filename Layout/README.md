@@ -34,6 +34,10 @@
 - Added fast volume slides [S3M Behaviour] (BKM adds)
 - Order List moved from F11 to F12 and added 2nd row
 - Picture Cover
+### Message Editor
+![Variables](Message_Editor.png)
+- Load/Save `.txt, .nfo` With OEM-US, OEM 866 and Unicode.
+- Functionally Elton's NFO Buider
 
 ## Special
 ### Russian text in BKT
