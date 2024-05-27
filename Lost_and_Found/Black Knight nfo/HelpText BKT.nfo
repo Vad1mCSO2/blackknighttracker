@@ -1,0 +1,541 @@
+                                                                                                                                                                                                            Û
+‡Pattern EditŒ††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††Û
+                                                                                                                                                                                                            Û
+‡Summary of effectsŒ††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††Û
+                                                                                                                                                                                                            Û
+  ‹†††Š                                                            ‹†††Š                                      ‹†††Š                                        „Chorus Presets [*5]Œ†Š„Reverb Presets [*6]Œ†Š   Û
+  „AxxƒSet song speed (hex)                                        „S1xƒSet glissando control                 „SAyƒSet high value of sample offset yxxzzh  „@C0 Default          ƒ„#C0 GM Plate         ƒ   Û
+  „BxxƒJump to Order (hex)                                         „S2xƒSet finetune                          „SB0ƒSet loopback point                      „@C1 Chorus 1 XG      ƒ„#C1 GM Small Room    ƒ   Û
+  „CxxƒBreak to row xx (hex) of next pattern                       „S3xƒSet vibrato waveform to type x [*2]   „SBxƒLoop x times to loopback point          „@C2 Chorus 2 XG      ƒ„#C2 GM Medium Room   ƒ   Û
+  „D0xƒVolume slide down by x                                      „S4xƒSet tremolo waveform to type x [*2]   „SCxƒNote cut after x ticks                  „@C3 Chorus 3 XG      ƒ„#C3 GM Large Room    ƒ   Û
+  „Dx0ƒVolume slide up by x                                        „S5xƒSet panbrello waveform to type x [*2] „SDxƒNote delay for x ticks                  „@C4 Chorus 4 XG      ƒ„#C4 GM Medium Hall   ƒ   Û
+  „DFxƒFine volume slide down by x                                 „S6xƒPattern delay for x ticks             „SExƒPattern delay for x rows                „@C5 Celeste 1 XG     ƒ„#C5 GM Large Hall    ƒ   Û
+  „DxFƒFine volume slide up by x                                   „S70ƒPast note cut                         „SFxƒSet parameterised MIDI Macro            „@C6 Celeste 2 XG     ƒ„#C6 Generic          ƒ   Û
+  „ExxƒPitch slide down by xx                                      „S71ƒPast note off                         „T0xƒTempo slide down by x                   „@C7 Celeste 3 XG     ƒ„#C7 Padded Cell      ƒ   Û
+  „EFxƒFine pitch slide down by x                                  „S72ƒPast note fade                        „T1xƒTempo slide up by x                     „@C8 Celeste 4 XG     ƒ„#C8 Room             ƒ   Û
+  „EExƒExtra fine pitch slide down by x                            „S73ƒSet NNA to note cut                   „TxxƒSet Tempo to xx (20h->0FFh)             „@C9 Flanger 1 XG     ƒ„#C9 Bathroom         ƒ   Û
+  „FxxƒPitch slide up by xx                                        „S74ƒSet NNA to continue                   „UxyƒFine vibrato with speed x, depth y      „@CA Flanger 2 XG     ƒ„#CA Living Room      ƒ   Û
+  „FFxƒFine pitch slide up by x                                    „S75ƒSet NNA to note off                   „VxxƒSet global volume to xx (0->80h)        „@CB Flanger 3 XG     ƒ„#CB Stone Room       ƒ   Û
+  „FExƒExtra fine pitch slide up by x                              „S76ƒSet NNA to note fade                  „W0xƒGlobal volume slide down by x           „@CC No Effect XG     ƒ„#CC Auditorium       ƒ   Û
+  „GxxƒSlide to note with speed xx                                 „S77ƒTurn off volume envelope              „Wx0ƒGlobal volume slide up by x             „@CD Chorus 1 GS      ƒ„#CD Concert Hall     ƒ   Û
+  „HxyƒVibrato with speed x, depth y                               „S78ƒTurn on volume envelope               „WFxƒFine global volume slide down by x      „@CE Chorus 2 GS      ƒ„#CE Cave             ƒ   Û
+  „IxyƒTremor with ontime x and offtime y                          „S79ƒTurn off panning envelope             „WxFƒFine global volume slide up by x        „@CF Chorus 3 GS      ƒ„#CF Arena            ƒ   Û
+  „JxyƒArpeggio with halftones x and y                             „S7AƒTurn on panning envelope              „XxxƒSet panning position (0->0FFh)          „@D0 Chorus 4 GS      ƒ„#D0 Hangar           ƒ   Û
+  „KxxƒDual Command: H00 & Dxx                                     „S7BƒTurn off pitch envelope               „YxyƒPanbrello with speed x, depth y         „@D1 FB Chorus GS     ƒ„#D1 Carpeted Hallway ƒ   Û
+  „LxxƒDual Command: G00 & Dxx                                     „S7CƒTurn on pitch envelope                „ZxxƒMIDI Macros                             „@D2 Flanger GS       ƒ„#D2 Hallway          ƒ   Û
+  „MxxƒSet channel volume to xx (0->40h)                           „S7DƒForce Pitch Envelope                  „!xxƒSet Volume                              „@D3 Delay GS         ƒ„#D3 Stone Corridor   ƒ   Û
+  „N0xƒChannel volume slide down by x                              „S7EƒForce Filter Envelope                 „@xxƒBuilt-in Chorus [*3]                    „@D4 Delay (FB) GS    ƒ„#D4 Alley            ƒ   Û
+  „Nx0ƒChannel volume slide up by x                                „S8xƒSet panning position                  „#xxƒBuilt-in Reverb [*4]                    ‰ˆ„#D5 Forest           ƒ   Û
+  „NFxƒFine channel volume slide down by x                         „S90ƒSet surround off                      „$xxƒKey Off in Ticks                                               „#D6 City             ƒ   Û
+  „NxFƒFine channel volume slide up by x                           „S91ƒSet surround sound                    „&xxƒSet envelope position                                          „#D7 Mountains        ƒ   Û
+  „OxxƒSet sample offset to yxxzzh, y set with SAy, zz set with *zz„S98ƒ-> #00                                „*zzƒSet Low Value of Sample Offset yxxzzh                          „#D8 Quarry           ƒ   Û
+  „P0xƒPanning slide to right by x                                 „S99ƒ-> #40                                „(xyƒNote Slide Down with ticks x, halftones y                      „#D9 Plain            ƒ   Û
+  „Px0ƒPanning slide to left by x                                  „S9AƒSet Center Surround sound [ALL]       „)xyƒNote Slide Up with ticks x, halftones y                        „#DA Parking Lot      ƒ   Û
+  „PFxƒFine panning slide to right by x                            „S9BƒSet Quaq Surround sound [ALL]         „/xxƒMIDI Macros (Smooth)                                           „#DB Sewer Pipe       ƒ   Û
+  „PxFƒFine panning slide to left by x                             „S9CƒSet Global Filters                    „:xyƒNote Delay + Cut                                               „#DC Underwater       ƒ   Û
+  „QxyƒRetrigger note every y ticks with volume modifier x [*1]    „S9DƒSet Local Filters                     „+xxƒParameter Extension                                            „#DD Default          ƒ   Û
+  „RxyƒTremolo with speed x, depth y                               „S9EƒSet Forward Playback                  „=xxƒSet Finetune                                                   „#DE Hall 1 XG        ƒ   Û
+  „S0xƒSet filter                                                  „S9FƒSet Backward Playback                 „-xxƒSet Finetune (Smooth)                                          „#DF Hall 2 XG        ƒ   Û
+  ‰ˆ                                                            ‰ˆ                                      ‰ˆ                                                               „#E0 Room 1 XG        ƒ   Û
+                                                                                                                                                                                  „#E1 Room 2 XG        ƒ   Û
+  „Qxy [*1]Œ†††††††††††††††††††††††††Š„Waveform [*2]Œ††††Š„Chorus parameters [*3]Œ††††††††††††††Š„Reverb Parameters [*4]Œ††††††††††††††Š                                          „#E2 Room 3 XG        ƒ   Û
+  „Values for x:                     ƒ„                  ƒ„@xx Set Volume to xx (0->40h)        ƒ„#xx Set Volume to xx (0->40h)        ƒ                                          „#E3 Stage 1 XG       ƒ   Û
+  „   0: No volume change 8: Not usedƒ„   ‹††Š   ‹††Š    ƒ„@5x Wet Dry Mix                      ƒ„#5x Input Gain                       ƒ                                          „#E4 Stage 2 XG       ƒ   Û
+  „   1: -1               9: +1      ƒ„ 0:„¹ºƒ 1:„½¾ƒ    ƒ„@6x Depth                            ƒ„#6x Reverb Mix                       ƒ                                          „#E5 Plate XG         ƒ   Û
+  „   2: -2               A: +2      ƒ„   ‰ˆ   ‰ˆ    ƒ„@7x Frequency                        ƒ„#7x Reverb Time                      ƒ                                          „#E6 White Room XG    ƒ   Û
+  „   3: -4               B: +4      ƒ„   ‹††Š           ƒ„@8x Wave Shape                       ƒ„#8x High Frequency RT Ratio          ƒ                                          „#E7 Tunnel XG        ƒ   Û
+  „   4: -8               C: +8      ƒ„ 2:„»¼ƒ 3: Random ƒ„@9x Phase                            ƒ„#xx Predefined Presets (C0->FEh) [*6]ƒ                                          „#E8 Basement XG      ƒ   Û
+  „   5: -16              D: +16     ƒ„   ‰ˆ           ƒ„@Ax Feedback                         ƒ„#FF Set Custom Preset                ƒ                                          „#E9 No Effect XG     ƒ   Û
+  „   6: *2/3             E: *3/2    ƒ„                  ƒ„@Bx Delay                            ƒ„                                     ƒ                                          „#EA Room 1 GS        ƒ   Û
+  „   7: *1/2             F: *2      ƒ„                  ƒ„@xx Predefined Presets (C0->FEh) [*5]ƒ„                                     ƒ                                          „#EB Room 2 GS        ƒ   Û
+  ‰ˆ‰ˆ„@FF Set Custom Preset                ƒ‰ˆ                                          „#EC Room 3 GS        ƒ   Û
+                                                          ‰ˆ                                                                                 „#ED Hall 1 GS        ƒ   Û
+                                                                                                                                                                                  „#EE Hall 2 GS        ƒ   Û
+                                                                                                                                                                                  „#EF Plate GS         ƒ   Û
+   ‹††Š                                                                                                                                                                           „#F0 Delay GS         ƒ   Û
+   „Axƒ Fine volume slide up by x                                                                                                                                                 „#F1 Pan Delay GS     ƒ   Û
+   „Bxƒ Fine volume slide down by x                                                                                                                                               ‰ˆ   Û
+   „Cxƒ Volume slide up by x                                                                                                                                                                                Û
+   „Dxƒ Volume slide down by x                                                                                                                                                                              Û
+   „Exƒ Pitch slide down by x                                                                                                                                                                               Û
+   „Fxƒ Pitch slide up by x                                                                                                                                                                                 Û
+   „Gxƒ Slide to note with speed x                                                                                                                                                                          Û
+   „Hxƒ Vibrato with depth x                                                                                                                                                                                Û
+   „Ixƒ Set Sample Cue by x                                                                                                                                                                                 Û
+   „$xƒ Vibrato with speed x                                                                                                                                                                                Û
+   „<xƒ Panning Left Slide by x                                                                                                                                                                             Û
+   „>xƒ Panning Right Slide by x                                                                                                                                                                            Û
+   ‰ˆ                                                                                                                                                                                                     Û
+                                                                                                                                                                                                            Û
+†††††††††††††††††††‡Pattern Edit KeysŒ††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††Û
+                                                                                                                                                                                                            Û
+   Grey +,-         Next/Previous pattern  (*)                                                                                                                                                              Û
+   Shift +,-        Next/Previous 4 pattern  (*)                                                                                                                                                            Û
+   Ctrl +,-         Next/Previous order's pattern  (*)                                                                                                                                                      Û
+   0-9              Change octave/volume/instrument                                                                                                                                                         Û
+   0-9, A-F         Change effect value                                                                                                                                                                     Û
+   A-Z,+\:=-!@#$&*()Change effect                                                                                                                                                                           Û
+   . (Period)       Clear field(s)                                                                                                                                                                          Û
+   1                Note cut (^^^)                                                                                                                                                                          Û
+   `                Note off (---) / Panning Toggle                                                                                                                                                         Û
+   Shift-`          Note fade (~~~)                                                                                                                                                                         Û
+   =                Parameter Control (PC)                                                                                                                                                                  Û
+   -                Parameter Control Smooth (PCs)                                                                                                                                                          Û
+   Spacebar         Use last note/instrument/volume/effect/effect value                                                                                                                                     Û
+   Caps Lock+Key    Preview note                                                                                                                                                                            Û
+                                                                                                                                                                                                            Û
+   Enter            Get default note/instrument/volume/effect                                                                                                                                               Û
+   < or Ctrl-Up     Decrease instrument                                                                                                                                                                     Û
+   > or Ctrl-Down   Increase instrument                                                                                                                                                                     Û
+   Grey /,*         Decrease/Increase octave                                                                                                                                                                Û
+   Grey /           Decrease octave (also Alt-Home)                                                                                                                                                         Û
+   Grey *           Increase octave (also Alt-End)                                                                                                                                                          Û
+   , (Comma)        Toggle edit mask for current field                                                                                                                                                      Û
+                                                                                                                                                                                                            Û
+   Ins/Del          Insert/Delete a row to/from current channel                                                                                                                                             Û
+   Alt-Ins/Del      Insert/Delete an entire row to/from pattern  (*)                                                                                                                                        Û
+                                                                                                                                                                                                            Û
+   Up/Down          Move up/down by the skipvalue (set with Alt 0-9)                                                                                                                                        Û
+   Ctrl-Home/End    Move up/down by 1 row                                                                                                                                                                   Û
+   Alt-Up/Down      Slide pattern up/down by 1 row                                                                                                                                                          Û
+   Left/Right       Move cursor left/right                                                                                                                                                                  Û
+   Alt-Left/Right   Move forwards/backwards one channel                                                                                                                                                     Û
+   Tab/Shift-Tab    Move forwards/backwards to note column                                                                                                                                                  Û
+   PgUp/PgDn        Move up/down n lines (n=Row Hilight Major)                                                                                                                                              Û
+   Ctrl-PgUp/PgDn   Move to top/bottom of pattern                                                                                                                                                           Û
+   Home             Move to start of column/start of line/start of pattern                                                                                                                                  Û
+   End              Move to end of column/end of line/end of pattern                                                                                                                                        Û
+   Backspace        Move to previous position (accounts for Multichannel)                                                                                                                                   Û
+   Shift-A/F        Move to previous/next note/instrument/volume/effect                                                                                                                                     Û
+                                                                                                                                                                                                            Û
+   Alt-N            Toggle Multichannel mode for current channel                                                                                                                                            Û
+ 2*Alt-N            Multichannel Selection menu                                                                                                                                                             Û
+                                                                                                                                                                                                            Û
+   Alt-Enter        Store pattern data                                                                                                                                                                      Û
+   Alt-Backspace    Revert pattern data  (*)                                                                                                                                                                Û
+   Ctrl-Backspace   Undo - any function with  (*) can be undone                                                                                                                                             Û
+                                                                                                                                                                                                            Û
+   Ctrl-C           Toggle centralise cursor                                                                                                                                                                Û
+   Ctrl-H           Toggle current row hilight                                                                                                                                                              Û
+   Ctrl-V           Toggle default volume display                                                                                                                                                           Û
+                                                                                                                                                                                                            Û
+   Ctrl-F2          Set pattern length                                                                                                                                                                      Û
+                                                                                                                                                                                                            Û
+  Track View Functions.                                                                                                                                                                                     Û
+   Alt-T            Cycle current track's view                                                                                                                                                              Û
+   Alt-R            Clear all track views                                                                                                                                                                   Û
+   Alt-H            Toggle track view divisions                                                                                                                                                             Û
+   Ctrl-0           Deselect current track                                                                                                                                                                  Û
+   Ctrl-1 - Ctrl-5  View current track in scheme 1-5                                                                                                                                                        Û
+   Ctrl-1 - Ctrl-6  View current track in scheme 1-6                                                                                                                                                        Û
+   Ctrl-Left/Right  Move left/right between track view columns                                                                                                                                              Û
+                                                                                                                                                                                                            Û
+   L-Ctrl&Shift 1-4 Quick view scheme setup                                                                                                                                                                 Û
+   Ctrl-Shift 1-6   Quick view scheme setup                                                                                                                                                                 Û
+                                                                                                                                                                                                            Û
+   Ctrl-T           Toggle View-Channel cursor-tracking                                                                                                                                                     Û
+                                                                                                                                                                                                            Û
+  Block Functions.                                                                                                                                                                                          Û
+   Alt-B            Mark beginning of block                                                                                                                                                                 Û
+   Alt-E            Mark end of block                                                                                                                                                                       Û
+   Alt-D            Quick mark n/2n/4n/... lines (n=Row Hilight Major)                                                                                                                                      Û
+   Alt-L            Mark entire column/pattern                                                                                                                                                              Û
+   Shift-Arrows     Mark block                                                                                                                                                                              Û
+                                                                                                                                                                                                            Û
+   Alt-U            Unmark block/Release clipboard memory                                                                                                                                                   Û
+                                                                                                                                                                                                            Û
+   Alt-Q            Raise notes by a semitone  (*)                                                                                                                                                          Û
+   Alt-Shift-Q      Raise notes by an octave  (*)                                                                                                                                                           Û
+   Alt-A            Lower notes by a semitone  (*)                                                                                                                                                          Û
+   Alt-Shift-A      Lower notes by an octave  (*)                                                                                                                                                           Û
+   Alt-S            Set Instrument  (*)                                                                                                                                                                     Û
+   Alt-V            Set volume/panning  (*)                                                                                                                                                                 Û
+   Alt-W            Wipe vol/pan not associated with a note/instrument  (*)                                                                                                                                 Û
+   Alt-K            Slide volume/panning column  (*)                                                                                                                                                        Û
+ 2*Alt-K            Wipe all volume/panning controls  (*)                                                                                                                                                   Û
+   Alt-J            Volume amplifier  (*) / Fast volume attenuate  (*)                                                                                                                                      Û
+   Alt-Z            Cut block  (*)                                                                                                                                                                          Û
+   Alt-Y            Swap block  (*)                                                                                                                                                                         Û
+   Alt-X            Slide effect value  (*)                                                                                                                                                                 Û
+ 2*Alt-X            Wipe all effect data  (*)                                                                                                                                                               Û
+                                                                                                                                                                                                            Û
+   Ctrl-Ins/Del     Roll block down/up                                                                                                                                                                      Û
+                                                                                                                                                                                                            Û
+   Alt-C            Copy block into clipboard                                                                                                                                                               Û
+   Shift-L          Copy block to clipboard honoring current mute-settings                                                                                                                                  Û
+   Alt-P            Paste data from clipboard  (*)                                                                                                                                                          Û
+   Alt-O            Overwrite with data from clipboard   (*)                                                                                                                                                Û
+ 2*Alt-O            Grow pattern to clipboard length                                                                                                                                                        Û
+   Alt-M            Mix each row from clipboard with pattern data  (*)                                                                                                                                      Û
+ 2*Alt-M            Mix each field from clipboard with pattern data                                                                                                                                         Û
+                                                                                                                                                                                                            Û
+   Alt-F            Double block length  (*)                                                                                                                                                                Û
+   Alt-G            Halve block length  (*)                                                                                                                                                                 Û
+                                                                                                                                                                                                            Û
+   Alt-I            Select Template mode / Fast volume amplify  (*)                                                                                                                                         Û
+   Ctrl-J           Toggle fast volume mode                                                                                                                                                                 Û
+   Ctrl-U           Selection volume vary / Fast volume vary (*)                                                                                                                                            Û
+   Ctrl-Y           Selection panning vary / Fast panning vary (*)                                                                                                                                          Û
+   Ctrl-K           Selection effect vary / Fast effect vary (*)                                                                                                                                            Û
+                                                                                                                                                                                                            Û
+ Playback Functions.                                                                                                                                                                                        Û
+   4                Play note under cursor                                                                                                                                                                  Û
+   8                Play row                                                                                                                                                                                Û
+                                                                                                                                                                                                            Û
+   Ctrl-F6          Play from current row                                                                                                                                                                   Û
+   Ctrl-F7          Set/Clear playback mark (for use with F7)                                                                                                                                               Û
+                                                                                                                                                                                                            Û
+   Alt-F9           Toggle current channel                                                                                                                                                                  Û
+   Alt-F10          Solo current channel                                                                                                                                                                    Û
+                                                                                                                                                                                                            Û
+   Scroll Lock      Toggle playback tracing                                                                                                                                                                 Û
+   Scroll Lock      Toggle playback tracing (also Ctrl-F)                                                                                                                                                   Û
+   Ctrl-Z           Change MIDI playback trigger                                                                                                                                                            Û
+   Ctrl-Z           Change MIDI playback trigger (also Ctrl-X)                                                                                                                                              Û
+   Alt-Scroll Lock  Toggle MIDI input                                                                                                                                                                       Û
+                                                                                                                                                                                                            Û
+‡Sample ListŒ†††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††Û
+ Sample List Keys.                                                                                                                                                                                          Û
+   Enter        Load new sample                                                                                                                                                                             Û
+   Tab          Move between options                                                                                                                                                                        Û
+   PgUp/PgDn    Move up/down (when not on list)                                                                                                                                                             Û
+                                                                                                                                                                                                            Û
+   Alt-A        Convert Signed to/from Unsigned samples                                                                                                                                                     Û
+   Alt-B        Pre-Loop cut sample                                                                                                                                                                         Û
+   Alt-C        Clear Sample Name & Filename (Used in Sample Name window)                                                                                                                                   Û
+   Alt-D        Delete Sample                                                                                                                                                                               Û
+   Alt-Shift-D  Downmix stereo sample to mono                                                                                                                                                               Û
+   Alt-E        Resize Sample (with interpolation)                                                                                                                                                          Û
+   Alt-F        Resize Sample (without interpolation)                                                                                                                                                       Û
+   Alt-G        Reverse Sample                                                                                                                                                                              Û
+   Alt-H        Centralise Sample                                                                                                                                                                           Û
+   Alt-I        Invert Sample                                                                                                                                                                               Û
+   Alt-L        Post-Loop cut sample                                                                                                                                                                        Û
+   Alt-M        Sample amplifier                                                                                                                                                                            Û
+   Alt-N        Toggle Multichannel playback                                                                                                                                                                Û
+   Alt-O        Save current sample to disk (IT Format)                                                                                                                                                     Û
+   Alt-P        Copy sample                                                                                                                                                                                 Û
+   Alt-Q        Toggle sample quality                                                                                                                                                                       Û
+   Alt-R        Replace current sample in song                                                                                                                                                              Û
+   Alt-S        Swap sample (in song also)                                                                                                                                                                  Û
+   Alt-T        Save current sample to disk (Export Format)                                                                                                                                                 Û
+   Alt-W        Save current sample to disk (RAW Format)                                                                                                                                                    Û
+   Alt-X        Exchange sample (only in Sample List)                                                                                                                                                       Û
+   Alt-Y        Text to sample data                                                                                                                                                                         Û
+   Alt-Z        Edit/create AdLib (FM) sample                                                                                                                                                               Û
+ 2*Alt-Z        Edit AdLib (FM) 4OP sample                                                                                                                                                                  Û
+   Alt-Shift-Z  Load predefined AdLib sample by MIDI patch number                                                                                                                                           Û
+                                                                                                                                                                                                            Û
+   Alt-Ins      Insert sample slot (updates pattern data)                                                                                                                                                   Û
+   Alt-Del      Remove sample slot (updates pattern data)                                                                                                                                                   Û
+   Alt-Up/Down  Swap sample with previous/next                                                                                                                                                              Û
+                                                                                                                                                                                                            Û
+   Alt-F9       Toggle current sample                                                                                                                                                                       Û
+   Alt-F10      Solo current sample                                                                                                                                                                         Û
+                                                                                                                                                                                                            Û
+   < >          Decrease/Increase playback channel                                                                                                                                                          Û
+                                                                                                                                                                                                            Û
+   Alt-Grey +   Increase C-5 Frequency by 1 octave                                                                                                                                                          Û
+   Alt-Grey -   Decrease C-5 Frequency by 1 octave                                                                                                                                                          Û
+   Ctrl-Grey +  Increase C-5 Frequency by 1 semitone                                                                                                                                                        Û
+   Ctrl-Grey -  Decrease C-5 Frequency by 1 semitone                                                                                                                                                        Û
+                                                                                                                                                                                                            Û
+‡Instrument ListŒ†††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††Û
+ Instrument List Keys.                                                                                                                                                                                      Û
+   Enter           Load new instrument                                                                                                                                                                      Û
+   Ctrl-PgUp/PgDn  Move instrument up/down (when not on list)                                                                                                                                               Û
+   Alt-C           Clear instrument name & filename                                                                                                                                                         Û
+   Alt-W           Wipe instrument data                                                                                                                                                                     Û
+   Spacebar        Edit instrument name (ESC to exit)                                                                                                                                                       Û
+                                                                                                                                                                                                            Û
+   Alt-D           Delete instrument & all related samples                                                                                                                                                  Û
+   Alt-Shift-D     Delete instrument & all related unused samples                                                                                                                                           Û
+   Alt-L           Post-Loop cut envelope                                                                                                                                                                   Û
+   Alt-N           Toggle Multichannel playback                                                                                                                                                             Û
+   Alt-O           Save current instrument to disk                                                                                                                                                          Û
+   Alt-P           Copy instrument                                                                                                                                                                          Û
+   Alt-R           Replace current instrument in song                                                                                                                                                       Û
+   Alt-S           Swap instruments (in song also)                                                                                                                                                          Û
+   Alt-U           Update pattern data                                                                                                                                                                      Û
+   Alt-X           Exchange instruments (only in Instrument List)                                                                                                                                           Û
+                                                                                                                                                                                                            Û
+   Alt-Ins         Insert instrument slot (updates pattern data)                                                                                                                                            Û
+   Alt-Del         Remove instrument slot (updates pattern data)                                                                                                                                            Û
+                                                                                                                                                                                                            Û
+   < >             Decrease/Increase playback channel                                                                                                                                                       Û
+                                                                                                                                                                                                            Û
+ Note Translation.                                                                                                                                                                                          Û
+   Enter           Pickup sample number & default play note                                                                                                                                                 Û
+   < >             Decrease/Increase sample number                                                                                                                                                          Û
+                                                                                                                                                                                                            Û
+   Alt-A           Change all samples                                                                                                                                                                       Û
+   Alt-N           Enter next note                                                                                                                                                                          Û
+   Alt-P           Enter previous note                                                                                                                                                                      Û
+   Alt-Up/Down     Transpose all notes a semitone up/down                                                                                                                                                   Û
+   Alt-Ins/Del     Insert/Delete a row from the table                                                                                                                                                       Û
+   , (Comma)       Toggle edit mask for current field                                                                                                                                                       Û
+                                                                                                                                                                                                            Û
+ Envelope Keys.                                                                                                                                                                                             Û
+   Enter           Pick up/Drop current node                                                                                                                                                                Û
+   Insert          Add node                                                                                                                                                                                 Û
+   Delete          Delete node                                                                                                                                                                              Û
+   Alt-Arrow Keys  Move node (fast)                                                                                                                                                                         Û
+   Alt-B           Pre-Loop cut envelope                                                                                                                                                                    Û
+   Alt-F           Double envelope length                                                                                                                                                                   Û
+   Alt-G           Halve envelope length                                                                                                                                                                    Û
+   Alt-E           Resize envelope                                                                                                                                                                          Û
+   Alt-Z           Generate envelope from ADSR values                                                                                                                                                       Û
+                                                                                                                                                                                                            Û
+   Press Spacebar  Play default note                                                                                                                                                                        Û
+   Release Space   Note off command                                                                                                                                                                         Û
+                                                                                                                                                                                                            Û
+‡Info PageŒ†††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††Û
+                                                                                                                                                                                                            Û
+ Up/Dn/Left/Right  Move highlighted channel                                                                                                                                                                 Û
+ PgUp/PgDn         Change window type                                                                                                                                                                       Û
+ V                 Toggle between volume/velocity bars                                                                                                                                                      Û
+ I                 Toggle between sample/instrument names                                                                                                                                                   Û
+                                                                                                                                                                                                            Û
+ Q                 Mute/Unmute current channel                                                                                                                                                              Û
+ S                 Solo current channel                                                                                                                                                                     Û
+                                                                                                                                                                                                            Û
+ Grey +, Grey -    Move forwards/backwards one pattern in song                                                                                                                                              Û
+                                                                                                                                                                                                            Û
+ Alt-S             Toggle Stereo playback                                                                                                                                                                   Û
+ Alt-R             Reverse output channels                                                                                                                                                                  Û
+                                                                                                                                                                                                            Û
+ G                 Goto pattern currently playing                                                                                                                                                           Û
+                                                                                                                                                                                                            Û
+‡Channel MixerŒ†††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††Û
+ Panning Keys.                                                                                                                                                                                              Û
+   L/M/R/S           Set panning to Left/Middle/Right/Surround                                                                                                                                              Û
+   Alt-L/M/R         Pan all unmuted channels Left/Middle/Right                                                                                                                                             Û
+   Alt-S/A           Pan all unmuted channels Stereo/Amiga Stereo                                                                                                                                           Û
+   Alt-Backslash     Linear panning (left to right)                                                                                                                                                         Û
+   Alt-Slash         Linear panning (right to left)                                                                                                                                                         Û
+                                                                                                                                                                                                            Û
+‡Order List and VariablesŒ††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††Û
+ Order Keys.                                                                                                                                                                                                Û
+   N                 Insert next pattern                                                                                                                                                                    Û
+   Shift-N           Copy current pattern to new pattern, and insert order                                                                                                                                  Û
+   -                 End of song mark                                                                                                                                                                       Û
+   +                 Skip to next Order mark                                                                                                                                                                Û
+   Ins               Insert a pattern                                                                                                                                                                       Û
+   Del               Delete a pattern                                                                                                                                                                       Û
+   Tab/Shift-Tab     Move to next window                                                                                                                                                                    Û
+   Ctrl-F7           Play this Order next                                                                                                                                                                   Û
+                                                                                                                                                                                                            Û
+   Alt-F11           Lock/unlock order list                                                                                                                                                                 Û
+   Alt-R             Sort order list                                                                                                                                                                        Û
+   Alt-U             Search for unused patterns                                                                                                                                                             Û
+                                                                                                                                                                                                            Û
+   Ctrl-B            Link (diskwriter) this pattern to the current sample                                                                                                                                   Û
+   Ctrl-O            Copy (diskwriter) this pattern to the current sample                                                                                                                                   Û
+                                                                                                                                                                                                            Û
+   C                 Continue to next position of current pattern                                                                                                                                           Û
+                                                                                                                                                                                                            Û
+   Alt-Enter         Save order list                                                                                                                                                                        Û
+   Alt-Backspace     Swap order list with saved order list                                                                                                                                                  Û
+                                                                                                                                                                                                            Û
+‡Message EditorŒ††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††Û
+                                                                                                                                                                                                            Û
+ Enter / ESC     Edit message / finished editing                                                                                                                                                            Û
+ Ctrl-T          Toggle extended ASCII font new                                                                                                                                                             Û
+                                                                                                                                                                                                            Û
+ Editing Keys.                                                                                                                                                                                              Û
+   Ctrl-Y        Delete line                                                                                                                                                                                Û
+   Alt-C         Clear message                                                                                                                                                                              Û
+                                                                                                                                                                                                            Û
+ NFO Keys.                                                                                                                                                                                                  Û
+   Ctrl-Shift-N  Enable/Disable NFO mode                                                                                                                                                                    Û
+   Alt-S         Selection                                                                                                                                                                                  Û
+   Alt-K         Char Picker                                                                                                                                                                                Û
+   Alt-P         Draw                                                                                                                                                                                       Û
+   Alt-E         Erase                                                                                                                                                                                      Û
+   Alt-F         Fill                                                                                                                                                                                       Û
+   Alt-T         Text                                                                                                                                                                                       Û
+   Alt-O         Draw Line                                                                                                                                                                                  Û
+ 2*Alt-O         Draw Square                                                                                                                                                                                Û
+ 3*Alt-O         Draw Circle                                                                                                                                                                                Û
+   Alt-W         Single Line Framework                                                                                                                                                                      Û
+ 2*Alt-W         Double Line Framework                                                                                                                                                                      Û
+                                                                                                                                                                                                            Û
+‡MIDI OutputŒ†††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††Û
+                                                                                                                                                                                                            Û
+ MIDI output causes MIDI data to be sent to all enabled output ports on the                                                                                                                                 Û
+ MIDI configuration page (Shift-F1) whenever the player sees an event.                                                                                                                                      Û
+                                                                                                                                                                                                            Û
+ The data actually sent is the result of a macro configuration on the MIDI                                                                                                                                  Û
+ Output page.                                                                                                                                                                                               Û
+                                                                                                                                                                                                            Û
+ Each event is described below:                                                                                                                                                                             Û
+                                                                                                                                                                                                            Û
+     MIDI Start  - Player begins                                                                                                                                                                            Û
+      MIDI Stop  - Player stops playing                                                                                                                                                                     Û
+      MIDI Tick  - Every tick                                                                                                                                                                               Û
+        Note On  - Every note recorded                                                                                                                                                                      Û
+       Note Off  - Every note off (including NNA note-off)                                                                                                                                                  Û
+  Change Volume  - Volume change (more like aftertouch)                                                                                                                                                     Û
+    Bank Select  - Bank change                                                                                                                                                                              Û
+ Program Change  - Program change                                                                                                                                                                           Û
+      SF0 - SFF  - When a Z00-Z7F is seen in the same IT-channel                                                                                                                                            Û
+      Z80 - Z8F  - When played                                                                                                                                                                              Û
+                                                                                                                                                                                                            Û
+ These events are written in UPPERCASE hexadecimal, with LOWERCASE variable                                                                                                                                 Û
+ substitution. The variables are:                                                                                                                                                                           Û
+                                                                                                                                                                                                            Û
+              a  - Coarse bank/change (only available on Bank Select)                                                                                                                                       Û
+              b  - Fine bank/change (only available on Bank Select)                                                                                                                                         Û
+              c  - Selected MIDI channel                                                                                                                                                                    Û
+              n  - Selected MIDI note (Note On events only)                                                                                                                                                 Û
+              p  - Program setting (Program Change events only)                                                                                                                                             Û
+              v  - Velocity (initial volume)                                                                                                                                                                Û
+              u  - Current volume                                                                                                                                                                           Û
+              x  - Set Panning                                                                                                                                                                              Û
+              y  - Calculated Panning (includes panning envelope)                                                                                                                                           Û
+              z  - MIDI Macro (Z00-Z7F commands)                                                                                                                                                            Û
+                                                                                                                                                                                                            Û
+ MIDI messages are normally three bytes (except for System Exclusive                                                                                                                                        Û
+ messages). A new "message" begins with a byte having its high bit set.                                                                                                                                     Û
+ This means that the first byte is going to be between 0x80 and 0xFF.                                                                                                                                       Û
+                                                                                                                                                                                                            Û
+ System Exclusive (SysEx) messages begin with a 0xF0 and end with a 0xF7                                                                                                                                    Û
+ byte. Schism/Impulse Tracker use the following SysEx messages internally:                                                                                                                                  Û
+                                                                                                                                                                                                            Û
+ F0 F0 00 x F7  - Set the current filter cutoff point to be "x"                                                                                                                                             Û
+ F0 F0 01 x F7  - Set the current filter resonance to be "x"                                                                                                                                                Û
+                                                                                                                                                                                                            Û
+ You'll generally need the programming guide for your MIDI synthesizers to                                                                                                                                  Û
+ come up with useful values. You do not have to include the F7 as Schism                                                                                                                                    Û
+ Tracker will automatically terminate SysEx messages.                                                                                                                                                       Û
+                                                                                                                                                                                                            Û
+ Other MIDI messages include:                                                                                                                                                                               Û
+         8c n v  - Note-off for channel "c", note "n"                                                                                                                                                       Û
+         9c n v  - Note-on for channel "c", note "n", velocity "v"                                                                                                                                          Û
+         Ac n v  - Aftertouch (adjust velocity)                                                                                                                                                             Û
+         Bc q z  - Set MIDI controller "q" on channel "c", to value "z"                                                                                                                                     Û
+         Cc p    - Program change channel "c" to "p"                                                                                                                                                        Û
+         Dc z    - Set total key pressure to "z"                                                                                                                                                            Û
+         Ec q q  - Pitch Wheel; q q is a 14-bit value.                                                                                                                                                      Û
+         F8      - MIDI "Clock" operation                                                                                                                                                                   Û
+         FA      - Start MIDI                                                                                                                                                                               Û
+         FB      - Continue MIDI                                                                                                                                                                            Û
+         FC      - Stop MIDI                                                                                                                                                                                Û
+         FF      - Reset                                                                                                                                                                                    Û
+                                                                                                                                                                                                            Û
+ There are other MIDI messages, but they are unlikely to be useful with                                                                                                                                     Û
+ Impulse or Schism Tracker.                                                                                                                                                                                 Û
+                                                                                                                                                                                                            Û
+ Nevertheless, your programming guide will be authoritative.                                                                                                                                                Û
+                                                                                                                                                                                                            Û
+                                                                                                                                                                                                            Û
+ Controllers (Bc q z) are reasonably common. They generally come in two                                                                                                                                     Û
+ flavors: a "coarse" or "high byte" setting, and "fine" or "low byte"                                                                                                                                       Û
+ setting. If a listed controller only comes in one kind, the values will be                                                                                                                                 Û
+ listed only for coarse adjustment.                                                                                                                                                                         Û
+                                                                                                                                                                                                            Û
+ The names listed below are likely to be similar to the names on your                                                                                                                                       Û
+ synthesizer.                                                                                                                                                                                               Û
+                                                                                                                                                                                                            Û
+ Coarse  Fine   Description                                                                                                                                                                                 Û
+                                                                                                                                                                                                            Û
+  00      20    Bank Select                                                                                                                                                                                 Û
+  01      21    Modulation Wheel (MOD Wheel)                                                                                                                                                                Û
+  02      22    Breath Controller                                                                                                                                                                           Û
+  04      24    Foot Pedal                                                                                                                                                                                  Û
+  05      25    Portamento Time                                                                                                                                                                             Û
+  06      26    Data Entry/Slider                                                                                                                                                                           Û
+  07      27    Volume                                                                                                                                                                                      Û
+  08      28    Balance/Panning                                                                                                                                                                             Û
+  0A      2A    Panning Position                                                                                                                                                                            Û
+  0B      2B    (Volume) Expression                                                                                                                                                                         Û
+  0C      2C    Effect Control 1                                                                                                                                                                            Û
+  0D      2D    Effect Control 2                                                                                                                                                                            Û
+  10            General Purpose Slider 1                                                                                                                                                                    Û
+  11            General Purpose Slider 2                                                                                                                                                                    Û
+  12            General Purpose Slider 3                                                                                                                                                                    Û
+  13            General Purpose Slider 4                                                                                                                                                                    Û
+  40            Hold Pedal                                                                                                                                                                                  Û
+  41            Portamento On/Off                                                                                                                                                                           Û
+  42            Sustenuto                                                                                                                                                                                   Û
+  43            Soft Pedal                                                                                                                                                                                  Û
+  44            Legato Pedal                                                                                                                                                                                Û
+  45            Hold 2 Pedal                                                                                                                                                                                Û
+  46            Sound Variation                                                                                                                                                                             Û
+  47            Sound Timbre                                                                                                                                                                                Û
+  48            Sound Release Time                                                                                                                                                                          Û
+  49            Sound Attack Time                                                                                                                                                                           Û
+  4A            Sound Brightness                                                                                                                                                                            Û
+  4B            Sound Control 6                                                                                                                                                                             Û
+  4C            Sound Control 7                                                                                                                                                                             Û
+  4D            Sound Control 8                                                                                                                                                                             Û
+  4E            Sound Control 9                                                                                                                                                                             Û
+  4F            Sound Control 10                                                                                                                                                                            Û
+  50            General Purpose Button 1                                                                                                                                                                    Û
+  51            General Purpose Button 2                                                                                                                                                                    Û
+  52            General Purpose Button 3                                                                                                                                                                    Û
+  53            General Purpose Button 4                                                                                                                                                                    Û
+  5B            Effects Level                                                                                                                                                                               Û
+  5C            Tremulo Level                                                                                                                                                                               Û
+  5D            Chorus Level                                                                                                                                                                                Û
+  5E            Celeste Level                                                                                                                                                                               Û
+  5F            Phaser Level                                                                                                                                                                                Û
+  60            Data Button Increment                                                                                                                                                                       Û
+  61            Data Button Descrement                                                                                                                                                                      Û
+  63      62    Non-Registered Parameter Number (NRPN)                                                                                                                                                      Û
+  65      64    Registered Parameter Number (RPN)                                                                                                                                                           Û
+  78            All Sound Off                                                                                                                                                                               Û
+  79            All Controllers Off                                                                                                                                                                         Û
+  7A            Local Keyboard On/Off                                                                                                                                                                       Û
+  7B            All Notes Off                                                                                                                                                                               Û
+  7C            Omni Mode Off                                                                                                                                                                               Û
+  7D            Omni Mode On                                                                                                                                                                                Û
+  7E            Monophonic Operation                                                                                                                                                                        Û
+  7F            Polyphonic Operation                                                                                                                                                                        Û
+                                                                                                                                                                                                            Û
+‡Global KeysŒ†††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††††Û
+                                                                                                                                                                                                            Û
+   F1                Help (Context sensitive!)                                                                                                                                                              Û
+   Shift-F1          MIDI Screen                                                                                                                                                                            Û
+   Ctrl-F1           System Configuration                                                                                                                                                                   Û
+   F2                Pattern Editor / Pattern Editor Options
+   F3                Sample List
+   Ctrl-F3           Sample Library
+   F4                Instrument List
+   Ctrl-F4           Instrument Library
+   F5                Play Information / Play song
+   Ctrl-F5           Play Song
+   F6                Play current pattern
+   Shift-F6          Play song from current Order
+   F7                Play from mark / current row
+   Shift-F8          Pause / Resume Playback
+   F8                Stop Playback
+   F9                Load Module (also Ctrl-L and Ctrl-R)
+   Shift-F9          Message Editor
+   F10               Save Module
+   F10               Save Module (also Ctrl-W)
+   Shift-F10         Export Module (to WAV, AIFF)
+   F11               Channel Mixer
+   F12               Order List and Variables
+   Ctrl-F12          Palette Configuration
+   Shift-F12         Font Editor
+
+   { }               Decrease/Increase playback speed
+   Ctrl-[ ]          Decrease/Increase playback tempo
+   [ ]               Decrease/Increase global volume
+   Alt-F1 -> Alt-F8  Toggle channels 1->8
+
+   Ctrl-D            Toggle mouse/keyboard grab
+   Ctrl-E            Refresh screen and reset cache identification
+   Ctrl-G            Go to order/pattern/row given time
+   Ctrl-I            Reinitialise sound driver
+   Ctrl-M            Toggle mouse cursor
+   Ctrl-N            New Song
+   Ctrl-P            Calculate approximate song length
+   Ctrl-Q            Quit Black Knight Tracker
+   Ctrl-Shift-Q      Quit without confirmation
+   Ctrl-S            Save current song
+   Alt-F11           Switch Song/Pattern (Lock Order List) 
+   Ctrl-Shift-F11    Plugins
+   Alt-Shift-F12     Picture list
+   Ctrl-Alt-Sh-F12   Picture Library

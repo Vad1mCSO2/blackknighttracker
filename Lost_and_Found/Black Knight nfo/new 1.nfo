@@ -1,0 +1,604 @@
+здддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
+Ё╠ BKM ╠ ╟╠╡ Black Knight Tracker + OpenMPT hacks ╡╠╟ ╠ BKM ╠Ё
+юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+
+зддддддддддддд©
+ЁOpenMPT hacksЁ
+цдддддддддддддадддддддддддддддддддддддддддддддддддддддддддддд©
+фThe hacks includes as MPTM format features:                 ╣
+Ё                                                            Ё
+фPNAM - Contains the pattern names. Each pattern name is     ╣
+ф32 bytes long and not necessarily null-terminated. The      ╣
+фencoding is unspecified (Windows code page). The pattern    ╣
+фnames are stored continuously, i.e. there are               ╣
+ф(chunk size / 32) pattern names in the chunk, for pattern 0,╣
+фpattern 1, ... pattern (chunk size / 32 - 1).               ╣
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:ЁPЁNЁAЁMЁLength ЁPacked Data....Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+фCNAM - Contains the channel names. Each channel name is 20  ╣
+фbytes long and not necessarily null-terminated. The encoding╣
+фis unspecified (Windows code page). The channel names are   ╣
+фstored continuously, i.e. there are (chunk size / 20)       ╣
+фchannel names in the chunk, for channel 1, channel 2, ...   ╣
+фchannel (chunk size / 20).                                  ╣
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:ЁCЁNЁAЁMЁLength ЁPacked Data....Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+фCHFX - Contains the plugin assignment for each channel. For ╣
+фevery channel, there is a 32-bit integer plugin index.      ╣
+ф0 means no plugin, 1 is the first plugin, etc...            ╣
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:ЁCЁHЁFЁXЁLength ЁPacked Data....Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+фFX00, ... FX99, F100, ... F255 - Contains plugin information╣
+фfor each plugin slot. [FX00] contains the information for   ╣
+фthe first plugin slot, [FX99] for the 100th, [F100] for the ╣
+ф101st, etc...                                               ╣
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:ЁPЁtЁsЁVЁPlug IDЁRЁMЁGЁ<ЁOutput Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000010:ЁReserved.......................Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000020:ЁUser-chosen plugin name........Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000030:Ё...user-chosen plugin name.....Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000040:ЁLibrary name Orig.DLL or DMO IDЁ                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000050:Ё...library name................Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000060:Ё...library name................Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000070:Ё...library name................Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000080:ЁP.Data ЁDЁxЁxЁxЁxЁxЁxЁxЁxЁxЁxЁxЁ                 Ё
+Ё          юдададададададададададададададады                 Ё
+Ё                                                            Ё
+ф00000000 - Plugin Type char(4) [VST = PtsV, DMO = OMXD]     ╣
+ф00000004 - Unique Plugin ID char(4)                         ╣
+ф00000008 - Routing Flags uint8                              ╣
+ф             0x01: Apply to master mix                     ╣
+ф             0x02: Bypass effect                           ╣
+ф             0x04: Wet Mix (dry added)                     ╣
+ф             0x08: Expand Mix [0%,100%]  [-200%,200%]     ╣
+ф             0x10: Plugin will automatically suspend on    ╣
+ф                    silence                                 ╣
+ф00000009 - Mix mode uint8                                   ╣
+ф             0: normal processing                          ╣
+ф             1: MIX += DRY - WET * wetRatio                ╣
+ф             2: MIX += WET - DRY * dryRatio                ╣
+ф             3: MIX -= WET - DRY * wetRatio                ╣
+ф             4: MIX -= middle - WET * wetRatio +           ╣
+ф                 middle - DRY                               ╣
+ф             5: MIX_L += wetRatio * (WET_L - DRY_L) +      ╣
+ф                 dryRatio * (DRY_R - WET_R)                 ╣
+ф                 MIX_R += dryRatio * (WET_L - DRY_L) +      ╣
+ф                 wetRatio * (DRY_R - WET_R)                 ╣
+ф0000000A - Gain Factor * 10 (9 = 90%, 10 = 100%, 11 = 110%, ╣
+ф           etc.). A value of 0 is equal to 10 (i.e. 100%).  ╣
+ф           uint8                                            ╣
+ф0000000B - (Reserved) uint8                                 ╣
+ф0000000C - Output Routing (0 = send to master 0x80 +        ╣
+ф           x = send to plugin x)                            ╣
+ф00000010 - (Reserved) uint8(16)                             ╣
+ф00000020 - User-chosen plugin name (Windows code page)      ╣
+ф           char(32)                                         ╣
+ф00000040 - Library name (Original DLL name /                ╣
+ф           DMO identifier).                                 ╣
+ф           UTF-8 (max. 64 bytes) since OpenMPT 1.22.07.01,  ╣
+ф           Windows code page in older versions. char(64)    ╣
+ф00000080 - Size of plugin-specific data in bytes            ╣
+ф           (parameters or opaque chunk) uint32              ╣
+ф00000084 - Plugin-specific data uint8                       ╣
+Ё                                                            Ё
+фThe first four bytes of the plugin-specific data determine  ╣
+фthe type of data. If they are all 0, then the plugin        ╣
+фparameters follow as an array of float32 values. Otherwise, ╣
+фplugin type specific data follows which should be treated as╣
+фan opaque chunk. For example, for VST plugins that support  ╣
+фthe effGetChunk / effSetChunk chunk, the first four bytes   ╣
+фwill be "fEvN", followed by the data to be sent to the      ╣
+фplugin.                                                     ╣
+Ё                                                            Ё
+фAfter the plugin information described above, more          ╣
+фinformation may follow in OpenMPT modules. This information ╣
+фis again stored in chunks. However, there are two legacy    ╣
+фchunks which do not have any size stored alongside the chunk╣
+фidentifier:                                                 ╣
+Ё                                                            Ё
+фDWRT - Dry/Wet Ratio of the plugin. This chunk does not     ╣
+ф       denote its size! float32                             ╣
+фPROG - Default plugin program (preset) to restore.          ╣
+ф       This chunk does not denote its size! float32         ╣
+Ё                                                            Ё
+фOpenMPT Instrument Extensions - Instrument extensions start ╣ 
+фwith the [XTPM] magic bytes, but there is no size indication╣
+фof the total size of this block. So you have to read the    ╣
+фfollowing chunks and as soon as you read the [STPM] magic   ╣
+фbytes for a chunk, you know you have read to far and can    ╣
+фcontinue with reading OpenMPT Song Extensions instead.      ╣
+Ё                                                            Ё
+фInstrument extensions are stored in a peculiar way: There   ╣
+фis one chunk per property, and it contains the values for   ╣
+фall instruments at once. The layout is as follows:          ╣
+Ё                                                            Ё
+фChunk Header Layout:                                        ╣
+ф00000000 - Magic bytes (FOURCC)                             ╣
+ф00000004 - Size of this chunk's entry for one instrument    ╣
+ф(i.e. total chunk content size is this field x number of    ╣
+фinstruments)                                                ╣
+Ё                                                            Ё
+фChunk Contents:                                             ╣
+ф..OF - Fade-out                                             ╣
+ф...P - Panning (0...256)                                    ╣
+ф..EV - Number of volume envelope nodes (if Р 25 nodes)      ╣
+ф..EP - Number of pan envelope nodes (if Р 25 nodes)         ╣
+ф.EiP - Number of pitch envelope nodes (if Р 25 nodes)       ╣
+ф..BM - MIDI Bank                                            ╣
+ф..PM - MIDI Program                                         ╣
+ф..CM - MIDI Channel                                         ╣
+ф.[PV - Volume Envelope Ticks (if Р 25 nodes)                ╣
+ф.[EV - Volume Envelope Values (if Р 25 nodes)               ╣
+ф.[PP - Pan Envelope Ticks (if Р 25 nodes)                   ╣
+ф.[EP - Pan Envelope Values (if Р 25 nodes)                  ╣
+ф[PiP - Pitch Envelope Ticks (if Р 25 nodes)                 ╣
+ф[EiP - Pitch Envelope Values (if Р 25 nodes)                ╣
+ф.PiM - Plugin, 0 = no plugin, 1 = first plugin, etc.        ╣
+ф..RV - Ramping / Attack                                     ╣
+ф...R - Resampling Mode                                      ╣
+ф         0: No Interpolation (1 tap)                       ╣
+ф         1: Linear (2 taps)                                ╣
+ф         2: Cubic Spline (4 taps)                          ╣
+ф         3: Sinc + Lowpass / Polyphase (8 taps)            ╣
+ф         4: Sinc / XMMS-ModPlug (8 taps)                   ╣
+ф         5: Default                                        ╣
+ф..SC - Cutoff Swing                                         ╣
+ф..SR - Resonance Swing                                      ╣
+ф..MF - Filter Mode                                          ╣
+фHEVP - Plugin Velocity Handling                             ╣
+фHOVP - Plugin Volume Handling                               ╣
+фNREV - Volume Envelope Release Node                         ╣
+фNREA - Pan Envelope Release Node                            ╣
+фNREP - Pitch Envelope Release Node                          ╣
+фDWPM - Pitch Wheel Depth                                    ╣
+фLTTP - Integer part of Pitch / Tempo Lock                   ╣
+фPTTF - Fractional part of Pitch / Tempo Lock (0...9999)     ╣
+Ё                                                            Ё
+фLegacy Extension:                                           ╣
+фBut wait, there is more! Some really old OpenMPT versions   ╣
+ф(1.17 RC1 and older, but not 1.17 RC2) do not use the       ╣
+фinstrument extensions described above. However, they also   ╣
+фneed to store the plugin reference for each instrument,     ╣
+фwhich is done in another modular block following each       ╣
+фinstrument header (and possibly the [MPTX] / [XTPM]         ╣
+фextension of that instrument header). If this legacy        ╣
+фextension is present, the instrument header is followed by  ╣
+фthe magic bytes [MSNI] and an uint32 containing the modular ╣
+фdata size.                                                  ╣
+Ё                                                            Ё
+фCurrently there is only one chunk in this modular data      ╣
+фblock. Its FOURCC is [GULP], has no size information and    ╣
+фcontains an uint8 for the plugin index (0 = no plugin,      ╣
+ф1 = first plugin, etc.).                                    ╣
+Ё                                                            Ё
+фOpenMPT Song Extensions - Song extensions start with the    ╣
+ф[STPM] magic bytes, but there is no size indication of the  ╣
+фtotal size of this block. In an IT / XM file, these         ╣
+фextensions are the last chunks in the file, so you can      ╣
+фcontinue reading until you are out of data. In the case of  ╣
+фMPTM files, some further MPTM-specific data follows. This   ╣
+фdata starts with the bytes "228" followed by ASCII charater ╣
+ф4 (not the digit), so you can keep reading the song         ╣
+фextensions until you read this FOURCC.                      ╣
+Ё                                                            Ё
+фChunk Header Layout:                                        ╣
+ф00000000 - Magic bytes (FOURCC)                             ╣
+ф00000004 - Size of this chunk, excluding the header         ╣
+Ё                                                            Ё
+ф..TD - Integer part of the default tempo (required if it is ╣
+ф       larger than 255 in IT / MPTM, but also found in      ╣
+ф       legacy XM files)                                     ╣
+фDTFR - Fractional part of the default tempo (0...9999)      ╣
+ф.BPR - Rows Per Beat                                        ╣
+ф.MPR - Rows Per Measure                                     ╣
+ф...C - Number of channels                                   ╣
+фSnhC - If there are more than 64 channels in the IT / MTPM  ╣
+ф       format, this chunk contains the default panning,     ╣
+ф       volume and flags for channels 65+. They are encoded  ╣
+ф       the same way as in the IT header, except that volume ╣
+ф       and panning are stored in an interleaved way (i.e.   ╣
+ф       volume for channel 65, pan for channel 65, volume    ╣
+ф       for channel 66, ...)                                 ╣
+ф..MT - Tempo Mode                                           ╣
+ф         0: classic                                        ╣
+ф         1: alternative                                    ╣
+ф         2: modern                                         ╣
+ф.MMP - Mix Levels                                           ╣
+ф         0: Original                                       ╣
+ф         1: 1.17 RC1                                       ╣
+ф         2: 1.17 RC2                                       ╣
+ф         3: 1.17 RC3                                       ╣
+ф         4: Compatible                                     ╣
+ф         5: Compatible (FT2 Pan Law)                       ╣
+ф.VWC - OpenMPT "Created With" version (e.g. OpenMPT         ╣
+ф       1.23.45.67 = 0x01234567)                             ╣
+фVWSL - OpenMPT "Last Saved With" version                    ╣
+ф.APS - Sample Pre-Amp                                       ╣
+фVTSV - VSTi Pre-Amp                                         ╣
+ф..PR - Restart Position                                     ╣
+фRSMP - Resampling Mode                                      ╣
+ф         0: No Interpolation (1 tap)                       ╣
+ф         1: Linear (2 taps)                                ╣
+ф         2: Cubic Spline (4 taps)                          ╣
+ф         3: Sinc + Lowpass / Polyphase (8 taps)            ╣
+ф         4: Sinc / XMMS-ModPlug (8 taps)                   ╣
+ф         5: Default                                        ╣
+фCUES - Sample cue points for a single sample (only MPTM     ╣
+ф       format). The first uint16 in the chunk indicates for ╣
+ф       which sample slot the cue points are meant. The rest ╣
+ф       of the chunk contains all cue points as uint32s.     ╣
+ф       If this chunk is missing for a particular sample     ╣
+ф       slot, OpenMPT assumes the default cue points for this╣
+ф       slot. The i-th cue point can be computed as i x 2048.╣
+фSWNG - Contains tempo swing factors (only MPTM format).     ╣
+ф       The first uint16 in the chunk indicates the number of╣
+ф       swing rows. The rest of the chunk contains all swing ╣
+ф       factors as uint32s. A factor of 16777216 (224) is    ╣
+ф       considered to be unity, i.e. does not modify the row ╣
+ф       duration. After loading, the number of swing factors ╣
+ф       should be resized to the actual number of rows per   ╣
+ф       beat (in case of malformed file) and re-normalized.  ╣
+ф.FSM - A bit field of generic compatibility flags. For      ╣
+ф       modules made with OpenMPT 1.25 and older, the most   ╣
+ф       important one is 0x01 (first bit set), which is      ╣
+ф       IT-/XM-compatible playback mode. All other flags     ╣
+ф       indicate which compatibility settings are toggled.   ╣
+фAUTH - Song artist, as UTF-8 string                         ╣
+фAMIM - MIDI Mapping settings                                ╣
+фCCOL - Channel colors. The chunk size divided by 4 indicates╣
+ф       the number of channels present. Format is            ╣
+ф       [R, G, B, 0] for channels that have a color assigned,╣
+ф       or [x, x, x, non-zero] for a channel with no color.  ╣
+юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+
+
+
+
+
+здддддддддддддддддддддддддд©
+ЁBlack Knight Tracker hacksЁ
+цддддддддддддддддддддддддддаддддддддддддддддддддддддддддддддд©
+фThe BKT hacks including MPTM + exclusive features of BKM    ╣
+Ё                                                            Ё
+фThis header is same as IT/MPTM module but IMPM replaces BKTM╣
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:ЁBЁKЁTЁMЁSong name includes NULLЁ                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000010:Ё...song name...............ЁPHLЁ                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000020:ЁOrdЁInsЁSmpЁPatЁCwtЁCmvЁFlgЁSpeЁ                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000030:ЁGЁMЁSЁTЁPЁPЁMsgЁMsg os ЁReserv.Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+ф00000000 - The BKTM identifier when saving .BKM module,     ╣
+ф           if IMPM when saving .MPTM and .IT module         ╣
+ф00000004 - see ITTECH.TXT                                   ╣
+Ё                                                            Ё
+фIf 0xBxyy Cwt/v can be identified as Black Knight Tracker   ╣
+фVx.yy.                                                      ╣
+Ё                                                            Ё
+Ё                   ╠ NEW BKT PATTERN ╠                      Ё
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:ЁLn1ЁRowЁLn2ЁLn3ЁPacked Data....Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+ф00000000 - 1st length is standard IT features               ╣
+ф00000002 - Number of Rows in this pattern. Range 1->65535   ╣
+ф00000004 - 2nd length follows as 32-bit up to 4 GB          ╣
+ф           (4,294,967,295 bytes) [BKT x86 Only]             ╣
+ф00000006 - 3rd length follows as 48-bit [BKT x64 ONLY]      ╣
+Ё                                                            Ё
+фPatterns are unpacked by the following pseudocode... (this  ╣
+фmay look horrible, but in practise, it's just as convenient ╣
+фas the S3M pattern format for playback                      ╣
+ф(but not for display))                                      ╣
+Ё                                                            Ё
+фGetNextChannelMarker:                                       ╣
+ф  Read byte into channelvariable.                           ╣
+ф  if(channelvariable = 0) then end of row                   ╣
+ф  Channel = (channelvariable-1) & 126  ; Channel is 0 based.╣
+ф  if(channelvariable & 128) then read byte into maskvariable╣
+ф    else maskvariable = previousmaskvariable for current    ╣
+ф    channel                                                 ╣
+Ё                                                            Ё
+ф  if(maskvariable & 1), then read note. (byte value)        ╣
+ф          // Note ranges from 0->119 (C-0 -> B-9)           ╣
+ф          // 255 = note off, 254 = notecut                  ╣
+ф          // Others = note fade                             ╣
+ф          //(already programmed into IT's player            ╣
+ф          //                but not available in the editor)╣
+Ё                                                            Ё
+ф  if(maskvariable & 2), then read instrument (byte value)   ╣
+ф          // Instrument ranges from 1->255 [01-99,H0-W5]    ╣
+Ё                                                            Ё
+ф  if(maskvariable & 4), then read volume/panning(byte value)╣
+ф          // Volume ranges from 0->64                       ╣
+ф          // Panning ranges from 0->64, mapped onto 128->192╣
+ф          // Prepare for the following also:                ╣
+ф          //  65->74 = Fine volume up        [Ax]           ╣
+ф          //  75->84 = Fine volume down      [Bx]           ╣
+ф          //  85->94 = Volume slide up       [Cx]           ╣
+ф          //  95->104 = Volume slide down    [Dx]           ╣
+ф          //  105->114 = Pitch Slide down    [Ex]           ╣
+ф          //  115->124 = Pitch Slide up      [Fx]           ╣
+ф          //  193->202 = Portamento to       [Gx]           ╣
+ф          //  203->212 = Vibrato             [Hx]           ╣
+ф          //  213->222 = Set Vibrato Speed   [$x]           ╣
+ф          //  223->232 = Sample Cue          [Ix]           ╣
+ф          //  233->242 = Panning Left Slide  [<x][x]       ╣
+ф          //  243->252 = Panning Right Slide [>x][x]       ╣
+Ё                                                            Ё
+ф  Effects 65 is equivalent to D0F, 66 is equivalent to      ╣
+ф  D1F -> 74 = D9F                                           ╣
+ф  Similarly for 75-84 (DFx), 85-94 (Dx0), 95->104 (D0x).    ╣
+Ё                                                            Ё
+ф  (Fine) Volume up/down all share the same memory (NOT      ╣ 
+ф  shared with Dxx in the effect column tho).                ╣
+Ё                                                            Ё
+ф  Pitch slide up/down affect E/F/(G)'s memory - a Pitch     ╣
+ф  slide up/down of x is equivalent to a normal slide by x*4 ╣
+Ё                                                            Ё
+ф  Portamento to (Gx) affects the memory for Gxx and has the ╣
+ф  equivalent slide given by this table:                     ╣
+Ё                                                            Ё
+ф  SlideTable      DB      1, 4, 8, 16, 32, 64, 96, 128, 255 ╣
+Ё                                                            Ё
+ф  Vibrato uses the same 'memory' as Hxx/Uxx.                ╣
+Ё                                                            ╣
+ф  if(maskvariable & 8), then read command (byte value) and  ╣
+ф                                                commandvalue╣
+ф // All ranges follows                                      ╣
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:Ё.ЁAЁBЁCЁDЁEЁFЁGЁHЁIЁJЁKЁLЁMЁNЁOЁ                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000010:ЁPЁQЁRЁSЁTЁUЁVЁWЁXЁYЁZЁ+Ё\Ё:Ё=Ё-Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000020:Ё!Ё@Ё#Ё$Ё&Ё*Ё(Ё)ЁxЁxЁxЁxЁxЁxЁxЁxЁ                 Ё
+Ё          юдададададададададададададададады                 Ё
+Ё                                                            Ё
+ф  if(maskvariable & 16), then note = lastnote for channel   ╣
+ф  if(maskvariable & 32), then instrument = lastinstrument   ╣
+ф                                                 for channel╣
+ф  if(maskvariable & 64), then volume/pan = lastvolume/pan   ╣
+ф                                                 for channel╣
+ф  if(maskvariable & 128), then {                            ╣
+ф          command = lastcommand for channel and             ╣
+ф          commandvalue = lastcommandvalue for channel       ╣
+ф  }                                                         ╣
+ф  Goto GetNextChannelMarker                                 ╣
+Ё                                                            Ё
+фBKTC - Initial Chorus and Reverb volumes in every channel,  ╣
+ф       1st offset Chorus, 2nd offset Reverb per channel,    ╣
+ф       Range 0->64 [0->40h]:                                ╣
+ф         3A 2C = Chorus Volume  58 and Reverb Volume  44  ╣
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:ЁBЁKЁTЁCЁ001Ё002Ё003Ё004Ё005Ё006Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000010:Ё007Ё008Ё009Ё010Ё011Ё012Ё013Ё014Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000020:Ё015Ё016Ё017Ё018Ё019Ё020Ё021Ё022Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000030:Ё023Ё024Ё025Ё026Ё027Ё028Ё029Ё030Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000040:Ё031Ё032Ё033Ё034Ё035Ё036Ё037Ё038Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000050:Ё039Ё040Ё041Ё042Ё043Ё044Ё045Ё046Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000060:Ё047Ё048Ё049Ё050Ё051Ё052Ё053Ё054Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000070:Ё055Ё056Ё057Ё058Ё059Ё060Ё061Ё062Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000080:Ё063Ё064Ё065Ё066Ё067Ё068Ё069Ё070Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000090:Ё071Ё072Ё073Ё074Ё075Ё076Ё077Ё078Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 000000A0:Ё079Ё080Ё081Ё082Ё083Ё084Ё085Ё086Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 000000B0:Ё087Ё088Ё089Ё090Ё091Ё092Ё093Ё094Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 000000C0:Ё095Ё096Ё097Ё098Ё099Ё100Ё101Ё102Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 000000D0:Ё103Ё104Ё105Ё106Ё107Ё108Ё109Ё110Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 000000E0:Ё111Ё112Ё113Ё114Ё115Ё116Ё117Ё118Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 000000F0:Ё119Ё120Ё121Ё122Ё123Ё124Ё125Ё126Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000100:Ё127ЁxЁxЁxЁxЁxЁxЁxЁxЁxЁxЁxЁxЁxЁxЁ                 Ё
+Ё          юдададададададададададададададады                 Ё
+Ё                                                            Ё
+фADVP - Advanced parameters in uint8                         ╣
+ф0000000x - "Black knight tracker's Fast Volume Slide" This  ╣
+ф         behaviour increases up to x1.5 slides examples:    ╣
+ф         1 = 1,2,1,2...     9 = 13,14,13,14...              ╣
+ф         2 = 3,3,3,3...     A = 15,15,15,15...              ╣
+ф         3 = 4,5,4,5...     B = 16,17,16,17...              ╣
+ф         4 = 6,6,6,6...     C = 18,18,18,18...              ╣
+ф         5 = 7,8,7,8...     D = 19,20,19,20...              ╣
+ф         6 = 9,9,9,9...     E = 21,21,21,21...              ╣
+ф         7 = 10,11,10,11... F = 22,23,22,23...              ╣
+ф         8 = 12,12,12,12...                                 ╣
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:ЁAЁDЁVЁPЁbЁxЁxЁxЁxЁxЁxЁxЁxЁxЁxЁxЁ                 Ё
+Ё          юдададададададададададададададады                 Ё
+Ё                                                            Ё
+фNew header: Cover Picture                                   ╣
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:ЁPЁIЁCЁTЁLength ЁUncompress PNG Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+фNEW .BKP pattern file                                       ╣
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:ЁBЁKЁTЁPЁLn1ЁRowЁLn2ЁLn3ЁPacked.Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+фNEW .BKT track file                                         ╣
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:ЁBЁKЁTЁTЁLn1ЁRowЁLn2ЁLn3ЁPacked.Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+фNEW .BKF raster 8x8 font pack file*                         ╣
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:ЁBЁKЁTЁFЁVersionЁFont Name......Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000010:Ё...font name...................Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000020:ЁNormal Font Data Length 800h...Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000820:ЁBIOS/NFO Font Data Length 800h.Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00001020:ЁTime Panel Graphics Length 800hЁ                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00001820:ЁButton Graphics Length 800h....Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00002020:ЁExtra Graphics Length 800h.....Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00002820:ЁHalf-Width Font Langth 400h....Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00002C20:ЁCyrillic Font Data Length 800h.Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00003820:ЁButton 2 Font Data Length 800h.Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+ф* raster font will be used Text-Based GUI                   ╣
+Ё                                                            Ё
+фHow it works this 8x8 and 4x8 raster font                   ╣
+ф  The raster font uses BINARY graphics example:             ╣
+Ё                                                            Ё
+ф   The 8x8 font example "A"                                 ╣
+Ё                                                            Ё
+Ё    7C 44 44 7C 44 44 44 00                                 Ё
+Ё                                                            Ё
+Ё   здддддддд©                                               Ё
+Ё   ЁЫЫЫЁ                                               Ё
+Ё   ЁЫЫЫЫЫЫЁ                                               Ё
+Ё   ЁЫЫЫЫЫЫЁ                                               Ё
+Ё   ЁЫЫЫЁ                                               Ё
+Ё   ЁЫЫЫЫЫЫЁ                                               Ё
+Ё   ЁЫЫЫЫЫЫЁ                                               Ё
+Ё   ЁЫЫЫЫЫЫЁ                                               Ё
+Ё   ЁЫЫЫЫЫЫЫЫЁ                                               Ё
+Ё   юдддддддды                                               Ё
+Ё                                                            Ё
+ф   The 4x8 font example "A"                                 ╣
+Ё                                                            Ё
+Ё    EA AE AA A0                                             Ё
+Ё                                                            Ё
+Ё   здддд©                                                   Ё
+Ё   ЁЫЁ                                                   Ё
+Ё   ЁЫЫЁ                                                   Ё
+Ё   ЁЫЫЁ                                                   Ё
+Ё   ЁЫЁ                                                   Ё
+Ё   ЁЫЫЁ                                                   Ё
+Ё   ЁЫЫЁ                                                   Ё
+Ё   ЁЫЫЁ                                                   Ё
+Ё   ЁЫЫЫЫЁ                                                   Ё
+Ё   юдддды                                                   Ё
+Ё                                                            Ё
+фThat's not good, the OpenMPT limit exceeds to 30k chars     ╣
+фThe BKT extends message to 9,223,372,036,854,775,807 chars  ╣
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:ЁBЁKЁEЁMЁchunk x64......ЁCommentЁ                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+фNEW .BKS ADLiB Sample                                       ╣
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:ЁBЁKЁAЁDЁLЁAdlib Parameters.....Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000010:ЁxЁSpeed....ЁFile name..........Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000020:Ё...ЁSample Name................Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000030:Ё...sample name.......ЁxЁxЁxЁxЁxЁ                 Ё
+Ё          юдададададададададададададададады                 Ё
+Ё                                                            Ё
+фNEW .BKC Color Palette                                      ╣
+Ё                                                            Ё
+Ё           0 1 2 3 4 5 6 7 8 9 A B C D E F                  Ё
+Ё          здбдбдбдбдбдбдбдбдбдбдбдбдбдбдбд©                 Ё
+Ё 00000000:ЁBЁKЁTЁCЁPЁVersionЁtЁrЁgЁbЁrЁgЁbЁ                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000010:ЁrЁgЁbЁrЁgЁbЁrЁgЁbЁrЁgЁbЁrЁgЁbЁrЁ                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000020:ЁgЁbЁrЁgЁbЁrЁgЁbЁrЁgЁbЁrЁgЁbЁrЁgЁ                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000030:ЁbЁrЁgЁbЁrЁgЁbЁrЁgЁbЁrЁgЁbЁrЁgЁbЁ                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000010:ЁrЁgЁbЁrЁgЁbЁrЁgЁbЁrЁgЁbЁrЁgЁbЁrЁ                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000020:ЁgЁbЁrЁgЁbЁrЁgЁbЁrЁgЁbЁrЁgЁbЁrЁgЁ                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё 00000030:ЁbЁrЁgЁbЁrЁgЁbЁrЁgЁbЁCommentsAL.Ё                 Ё
+Ё          цдедедедедедедедедедедедедедедед╢                 Ё
+Ё                                                            Ё
+ф00000000 - FIVECC "BKTCP"                                   ╣
+ф00000005 - Version when saved from BKT 01000100 = 1.00.01.00╣
+ф00000009 - Type of bit [00 - 6-bit depth, 01 - 8-bit depth] ╣
+ф0000000A - Palette color data                               ╣
+ф0000003A - Comments any length (not affected)               ╣
+Ё                                                            Ё
+фRequesting hacks in BKT can be putted this                  ╣
+юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+здддддддддддд©здддддддддддддддддддддддддддддддддддддддддддддд©
+ЁNFO by Vad1mЁЁ╟╠ THE BEST TRACKER IS BLACK KNIGHT TRACKER ╠╟Ё
+юддддддддддддыюдддддддддддддддддддддддддддддддддддддддддддддды
+ф╣
