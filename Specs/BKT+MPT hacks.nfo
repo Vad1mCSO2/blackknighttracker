@@ -350,10 +350,10 @@
 ╞          //  115->124 = Pitch Slide up      [Fx]           ╡
 ╞          //  193->202 = Portamento to       [Gx]           ╡
 ╞          //  203->212 = Vibrato             [Hx]           ╡
-╞          //  213->222 = Set Vibrato Speed   [$x]           ╡
+╞          //  213->222 = Set Vibrato Speed   [$x][Ux]       ╡
 ╞          //  223->232 = Sample Cue          [Ix]           ╡
-╞          //  233->242 = Panning Left Slide  [<x][◄x]       ╡
-╞          //  243->252 = Panning Right Slide [>x][►x]       ╡
+╞          //  233->242 = Panning Left Slide  [<x][◄x][Lx]   ╡
+╞          //  243->252 = Panning Right Slide [>x][►x][Rx]   ╡
 │                                                            │
 ╞  Effects 65 is equivalent to D0F, 66 is equivalent to      ╡
 ╞  D1F -> 74 = D9F                                           ╡
